@@ -104,6 +104,14 @@ describe('MainLayout', () => {
     expect(document.activeElement).toBe(first);
   });
 
+  it('places the breadcrumb trail inside the content area above the page outlet', () => {
+    const content = el().querySelector('main.content') as HTMLElement;
+    const trail = content.querySelector('app-breadcrumbs') as HTMLElement;
+    const outlet = content.querySelector('router-outlet') as HTMLElement;
+    expect(trail).not.toBeNull();
+    expect(trail.compareDocumentPosition(outlet) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+  });
+
   it('keeps the drawer during the slide-out and removes it when the animation ends', async () => {
     menuButton().click();
     fixture.detectChanges();

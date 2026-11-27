@@ -1,0 +1,16 @@
+@if (trail().length > 0) {
+  <nav class="breadcrumbs" [attr.aria-label]="'layout.breadcrumb' | translate">
+    <ol class="breadcrumbs__list">
+      @for (crumb of trail(); track crumb.path; let last = $last) {
+        <li class="breadcrumbs__item">
+          @if (last) {
+            <span class="breadcrumbs__current" aria-current="page">{{ crumb.text }}</span>
+          } @else {
+            <a class="breadcrumbs__link" [routerLink]="crumb.path">{{ crumb.text }}</a>
+            <ng-icon class="breadcrumbs__sep" name="tablerChevronRight" aria-hidden="true" />
+          }
+        </li>
+      }
+    </ol>
+  </nav>
+}

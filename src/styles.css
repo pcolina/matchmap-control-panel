@@ -16,6 +16,7 @@ body {
 :root {
   --cp-sidebar-width: 240px;
   --cp-rail-width: 50px;
+  --cp-breadcrumb-top: 0px;
   --mm-focus-halo:
     0 0 0 var(--mm-space-1) color-mix(in srgb, var(--mm-color-accent) 45%, transparent),
     0 0 var(--mm-space-5) var(--mm-space-2)
