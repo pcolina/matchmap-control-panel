@@ -19,12 +19,13 @@ import { NAV_ITEMS, visibleItems } from '../../../core/nav/nav-items';
 import { SidebarPreferenceStore } from '../../../core/preferences/sidebar-preference.store';
 import { Viewport } from '../../../core/viewport/breakpoint';
 import { Sidebar } from '../sidebar/sidebar';
+import { Breadcrumbs } from '../breadcrumbs/breadcrumbs';
 
 const FOCUSABLE = 'a[href], button:not([disabled])';
 
 @Component({
   selector: 'app-main-layout',
-  imports: [RouterOutlet, Sidebar, NgIcon, TranslatePipe],
+  imports: [RouterOutlet, Sidebar, Breadcrumbs, NgIcon, TranslatePipe],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './main-layout.html',
   styleUrl: './main-layout.css',
