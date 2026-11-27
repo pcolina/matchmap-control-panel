@@ -17,7 +17,7 @@ Angular 22 (zoneless, signals), `@angular/router` with lazy-loaded routes, Apoll
 (`apollo-angular`), `@ngrx/signals` (SignalStore), RxJS only for async streams, Tabler icons
 through `@ng-icons/tabler-icons`, `@ngx-translate/core`, Vitest through `ng test`, Prettier.
 
-Charts and statistics library: not chosen yet. The change that first needs it proposes it.
+Charts, CSV and PDF: ECharts (`echarts`, Apache-2.0) for charts, PapaParse (`papaparse`, MIT) for CSV import, and jsPDF with jspdf-autotable (`jspdf`, `jspdf-autotable`, MIT) for PDF export. Tables and form components come from Angular Material (`@angular/material`, MIT). All are pinned to exact versions in `package.json`.
 
 ## Data ownership
 

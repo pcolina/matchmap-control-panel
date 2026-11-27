@@ -13,10 +13,12 @@
     "typecheck": "tsc -p tsconfig.app.json --noEmit && tsc -p tsconfig.spec.json --noEmit"
   },
   "dependencies": {
+    "@angular/cdk": "22.2.7",
     "@angular/common": "22.2.3",
     "@angular/compiler": "22.2.3",
     "@angular/core": "22.2.3",
     "@angular/forms": "22.2.3",
+    "@angular/material": "22.2.7",
     "@angular/platform-browser": "22.2.3",
     "@angular/router": "22.2.3",
     "@apollo/client": "^4.3.5",
@@ -25,7 +27,11 @@
     "@ngrx/signals": "^22.0.1",
     "@ngx-translate/core": "^18.0.0",
     "apollo-angular": "^14.2.0",
+    "echarts": "6.1.0",
     "graphql": "^16.14.2",
+    "jspdf": "4.2.1",
+    "jspdf-autotable": "5.0.9",
+    "papaparse": "5.7.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0"
   },
@@ -33,6 +39,7 @@
     "@angular/build": "22.2.3",
     "@angular/cli": "22.2.3",
     "@angular/compiler-cli": "22.2.3",
+    "@types/papaparse": "5.5.2",
     "axe-core": "4.14.0",
     "jsdom": "^30.0.0",
     "prettier": "^3.8.1",
