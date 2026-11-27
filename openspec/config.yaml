@@ -1,0 +1,11 @@
+schema: spec-driven
+
+context: |
+  Control panel for MatchMap. Same stack, versions, design tokens and branding as
+  C:\workspace\pablo\matchMap\apps\web. The API is shared with MatchMap: its contracts live in
+  C:\workspace\pablo\matchmap-api\contracts\ (graphql\ and openapi\).
+  Everything technical is in English. User-facing text is an i18n key with en and es values.
+  Internal tool: languages are en and es only, taken from the browser language, with no accessible
+  language selector (the switch location is not defined yet). Themes: light and dark, following the
+  system by default. Layout is simpler than MatchMap's and is defined in a later change.
+  Only one change is open at a time. Stop at every gate: proposal, specs, design, tasks.

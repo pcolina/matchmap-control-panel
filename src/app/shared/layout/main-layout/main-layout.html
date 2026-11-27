@@ -1,0 +1,46 @@
+@if (narrow()) {
+  <header class="topbar">
+    <button
+      #menuButton
+      type="button"
+      class="topbar__menu"
+      aria-controls="cp-drawer"
+      [attr.aria-expanded]="drawerOpen()"
+      [attr.aria-label]="(drawerOpen() ? 'layout.menu.close' : 'layout.menu.open') | translate"
+      (click)="drawerOpen() ? closeDrawer() : openDrawer()"
+    >
+      <ng-icon name="tablerMenu2" aria-hidden="true" />
+    </button>
+  </header>
+}
+
+@if (!narrow()) {
+  <app-sidebar [items]="items()" [collapsed]="collapsed()" (toggle)="toggleSidebar()" />
+}
+
+@if (narrow() && drawerOpen()) {
+  <div
+    class="backdrop"
+    [class.backdrop--closing]="drawerClosing()"
+    aria-hidden="true"
+    (click)="closeDrawer()"
+  ></div>
+  <div
+    #drawer
+    id="cp-drawer"
+    class="drawer"
+    [class.drawer--closing]="drawerClosing()"
+    role="dialog"
+    aria-modal="true"
+    [attr.aria-label]="'layout.navigation' | translate"
+    (keydown)="onDrawerKeydown($event)"
+    (click)="onDrawerClick($event)"
+    (animationend)="onDrawerAnimationEnd($event)"
+  >
+    <app-sidebar [items]="items()" [collapsed]="false" [showToggle]="false" />
+  </div>
+}
+
+<main class="content" id="main-content">
+  <router-outlet />
+</main>

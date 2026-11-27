@@ -1,0 +1,56 @@
+<nav class="sidebar" [attr.aria-label]="'layout.navigation' | translate">
+  <div class="sidebar__brand">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="/symbol-on-dark.svg" />
+      <img class="sidebar__logo" src="/symbol-on-light.svg" alt="" width="32" height="32" />
+    </picture>
+    @if (!collapsed()) {
+      <span class="sidebar__brand-text">
+        <span class="sidebar__name">{{ 'brand.name' | translate }}</span>
+        <span class="sidebar__subtitle">{{ 'brand.product' | translate }}</span>
+      </span>
+    }
+  </div>
+
+  <ul class="sidebar__list">
+    @for (item of items(); track item.route) {
+      <li>
+        <a
+          class="sidebar__link"
+          [routerLink]="['/', item.route]"
+          routerLinkActive="sidebar__link--active"
+          ariaCurrentWhenActive="page"
+          [attr.aria-label]="item.labelKey | translate"
+          [title]="item.labelKey | translate"
+        >
+          <ng-icon class="sidebar__icon" [name]="item.icon" aria-hidden="true" />
+          @if (!collapsed()) {
+            <span class="sidebar__label">{{ item.labelKey | translate }}</span>
+          }
+        </a>
+      </li>
+    }
+  </ul>
+
+  <div class="sidebar__footer">
+    @if (showToggle()) {
+      <button
+        type="button"
+        class="sidebar__toggle"
+        [attr.aria-expanded]="!collapsed()"
+        [attr.aria-label]="
+          (collapsed() ? 'layout.sidebar.expand' : 'layout.sidebar.collapse') | translate
+        "
+        (click)="toggle.emit()"
+      >
+        <ng-icon
+          [name]="collapsed() ? 'tablerArrowsMaximize' : 'tablerArrowsMinimize'"
+          aria-hidden="true"
+        />
+      </button>
+    }
+    @if (!collapsed()) {
+      <span class="sidebar__version">{{ 'brand.version' | translate: { version: version } }}</span>
+    }
+  </div>
+</nav>

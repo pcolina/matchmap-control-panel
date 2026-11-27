@@ -1,0 +1,118 @@
+:host {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  min-height: 100dvh;
+  background-color: var(--mm-color-bg);
+  color: var(--mm-color-text);
+}
+
+:host(.shell--narrow) {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.topbar {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  height: var(--mm-size-tab-bar-height);
+  padding: 0 var(--mm-space-4);
+  background-color: var(--mm-color-surface);
+  border-bottom: 1px solid var(--mm-color-border);
+}
+
+.topbar__menu {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--mm-size-touch-target-min);
+  min-height: var(--mm-size-touch-target-min);
+  border: 1px solid var(--mm-color-borderStrong);
+  border-radius: var(--mm-radius-md);
+  background: var(--mm-color-surface);
+  color: var(--mm-color-text);
+  cursor: pointer;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  background-color: color-mix(in srgb, var(--mm-color-text) 40%, transparent);
+}
+
+.drawer {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 11;
+  width: var(--cp-sidebar-width);
+  max-width: 100vw;
+  box-shadow: var(--mm-elevation-sheet);
+  background-color: var(--mm-color-surface);
+}
+
+.content {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding: var(--mm-space-5);
+  box-sizing: border-box;
+}
+
+:host(:not(.shell--narrow)) .content {
+  grid-column: 2;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .drawer {
+    animation: cp-drawer-in var(--mm-motion-base) var(--mm-easing);
+  }
+
+  .drawer--closing {
+    animation: cp-drawer-out var(--mm-motion-base) var(--mm-easing) forwards;
+  }
+
+  .backdrop {
+    animation: cp-fade-in var(--mm-motion-base) var(--mm-easing);
+  }
+
+  .backdrop--closing {
+    animation: cp-fade-out var(--mm-motion-base) var(--mm-easing) forwards;
+  }
+}
+
+@keyframes cp-drawer-in {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes cp-drawer-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes cp-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes cp-fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
