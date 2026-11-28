@@ -39,10 +39,6 @@
       />
     </label>
 
-    @if (error()) {
-      <p class="login__error" role="alert">{{ 'login.error' | translate }}</p>
-    }
-
     <button class="login__submit" type="submit" [disabled]="submitting()">
       {{ 'login.submit' | translate }}
     </button>
