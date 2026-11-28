@@ -4,10 +4,11 @@ import { NgIcon } from '@ng-icons/core';
 import { TranslatePipe } from '@ngx-translate/core';
 import { APP_VERSION } from '../../../core/app-info';
 import { NavItem } from '../../../core/nav/nav-items';
+import { SignOut } from '../sign-out/sign-out';
 
 @Component({
   selector: 'app-sidebar',
-  imports: [RouterLink, RouterLinkActive, NgIcon, TranslatePipe],
+  imports: [RouterLink, RouterLinkActive, NgIcon, TranslatePipe, SignOut],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './sidebar.html',
   styleUrl: './sidebar.css',

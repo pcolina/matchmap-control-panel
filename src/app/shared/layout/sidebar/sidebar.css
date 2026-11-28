@@ -124,11 +124,18 @@
   white-space: nowrap;
 }
 
+.sidebar__brand-toggle {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
 .sidebar__version {
   align-self: center;
-  padding: 2px var(--mm-space-2);
-  border-radius: var(--mm-radius-pill);
-  background-color: var(--mm-color-surface);
   color: var(--mm-color-accent);
   font-size: var(--mm-type-caption-size);
   font-weight: var(--mm-type-caption-weight);
@@ -141,4 +148,18 @@
   :host {
     transition: width var(--mm-motion-base) var(--mm-easing);
   }
+}
+
+.sidebar__session {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mm-space-3);
+  margin-top: auto;
+}
+
+.sidebar__divider {
+  width: 100%;
+  margin: 0;
+  border: 0;
+  border-top: 1px solid var(--mm-color-border);
 }

@@ -47,6 +47,17 @@ describe('Sidebar', () => {
   const links = (): HTMLAnchorElement[] =>
     Array.from(fixture.nativeElement.querySelectorAll('a.sidebar__link'));
 
+  it('places the sign-out control after the links, behind a divider', () => {
+    const list = fixture.nativeElement.querySelector('.sidebar__list') as HTMLElement;
+    const divider = fixture.nativeElement.querySelector('.sidebar__divider') as HTMLElement;
+    const signOut = fixture.nativeElement.querySelector('app-sign-out') as HTMLElement;
+    expect(divider).not.toBeNull();
+    expect(list.compareDocumentPosition(divider) & Node.DOCUMENT_POSITION_FOLLOWING).toBeTruthy();
+    expect(
+      divider.compareDocumentPosition(signOut) & Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
+  });
+
   it('renders eight links in the defined order with accessible names', () => {
     const names = links().map((link) => link.getAttribute('aria-label'));
     expect(names).toEqual([
@@ -75,7 +86,8 @@ describe('Sidebar', () => {
   });
 
   it('sets aria-expanded on the toggle from the collapsed state', () => {
-    const toggle = (): HTMLButtonElement => fixture.nativeElement.querySelector('.sidebar__toggle');
+    const toggle = (): HTMLButtonElement =>
+      fixture.nativeElement.querySelector('.sidebar__brand-toggle');
     expect(toggle().getAttribute('aria-expanded')).toBe('true');
     fixture.componentInstance.collapsed.set(true);
     fixture.detectChanges();
@@ -96,21 +108,17 @@ describe('Sidebar', () => {
     expect(fixture.nativeElement.querySelector('.sidebar__version')).toBeNull();
   });
 
-  it('uses outward arrows to expand and inward arrows to collapse', () => {
-    const iconName = (): unknown =>
-      (
-        fixture.debugElement
-          .query(By.css('.sidebar__toggle'))
-          .query(By.directive(NgIcon)).componentInstance as NgIcon
-      ).name();
-    expect(iconName()).toBe('tablerArrowsMinimize');
+  it('names the brand control by the change it makes', () => {
+    const label = (): string | null =>
+      fixture.nativeElement.querySelector('.sidebar__brand-toggle').getAttribute('aria-label');
+    expect(label()).toBe('Collapse sidebar');
     fixture.componentInstance.collapsed.set(true);
     fixture.detectChanges();
-    expect(iconName()).toBe('tablerArrowsMaximize');
+    expect(label()).toBe('Expand sidebar');
   });
 
   it('emits toggle when the toggle is pressed', () => {
-    fixture.nativeElement.querySelector('.sidebar__toggle').click();
+    fixture.nativeElement.querySelector('.sidebar__brand-toggle').click();
     expect(fixture.componentInstance.toggled).toBe(1);
   });
 });
