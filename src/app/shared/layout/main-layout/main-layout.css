@@ -117,3 +117,9 @@
     opacity: 0;
   }
 }
+
+.session {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: var(--mm-space-2);
+}

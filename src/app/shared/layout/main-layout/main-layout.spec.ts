@@ -1,5 +1,7 @@
 import { provideZonelessChangeDetection, signal } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClientTesting } from '@angular/common/http/testing';
 import { provideRouter } from '@angular/router';
 import { provideIcons } from '@ng-icons/core';
 import * as icons from '@ng-icons/tabler-icons';
@@ -21,6 +23,8 @@ describe('MainLayout', () => {
       providers: [
         provideZonelessChangeDetection(),
         provideRouter([{ path: '**', children: [] }]),
+        provideHttpClient(),
+        provideHttpClientTesting(),
         provideIcons(icons),
         provideTranslateService({
           fallbackLang: 'en',

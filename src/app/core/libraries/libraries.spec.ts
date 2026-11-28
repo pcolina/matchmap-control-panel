@@ -3,7 +3,7 @@ import * as echarts from 'echarts';
 import Papa from 'papaparse';
 import { jsPDF } from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import { MatTableModule } from '@angular/material/table';
+import { TableModule } from 'primeng/table';
 
 describe('external libraries', () => {
   it('loads ECharts with an init function', () => {
@@ -24,7 +24,7 @@ describe('external libraries', () => {
     expect(doc.output('arraybuffer').byteLength).toBeGreaterThan(0);
   });
 
-  it('exposes the Material table module', () => {
-    expect(MatTableModule).toBeDefined();
+  it('exposes the PrimeNG table module', () => {
+    expect(TableModule).toBeDefined();
   });
 });

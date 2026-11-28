@@ -10,7 +10,7 @@ body {
   background-color: var(--mm-color-bg);
   color: var(--mm-color-text);
   font-family: var(--mm-font-body);
-  color-scheme: light;
+  color-scheme: light dark;
 }
 
 :root {

@@ -1,0 +1,50 @@
+<main class="login">
+  <div class="login__brand">
+    <picture>
+      <source media="(prefers-color-scheme: dark)" srcset="/symbol-on-dark.svg" />
+      <img class="login__logo" src="/symbol-on-light.svg" alt="" width="64" height="64" />
+    </picture>
+    <span class="login__brand-text">
+      <span class="login__name">{{ 'brand.name' | translate }}</span>
+      <span class="login__product">{{ 'brand.product' | translate }}</span>
+    </span>
+  </div>
+
+  <form class="login__form" (submit)="onSubmit($event)">
+    <h1 class="login__title">{{ 'login.title' | translate }}</h1>
+
+    <label class="login__field">
+      <span>{{ 'login.email' | translate }}</span>
+      <input
+        class="login__input"
+        type="email"
+        name="email"
+        autocomplete="username"
+        required
+        [value]="email()"
+        (input)="email.set($any($event.target).value)"
+      />
+    </label>
+
+    <label class="login__field">
+      <span>{{ 'login.password' | translate }}</span>
+      <input
+        class="login__input"
+        type="password"
+        name="password"
+        autocomplete="current-password"
+        required
+        [value]="password()"
+        (input)="password.set($any($event.target).value)"
+      />
+    </label>
+
+    @if (error()) {
+      <p class="login__error" role="alert">{{ 'login.error' | translate }}</p>
+    }
+
+    <button class="login__submit" type="submit" [disabled]="submitting()">
+      {{ 'login.submit' | translate }}
+    </button>
+  </form>
+</main>

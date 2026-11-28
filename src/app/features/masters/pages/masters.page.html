@@ -1,0 +1,29 @@
+<div class="masters">
+  <p-select
+    class="masters__selector"
+    [options]="masterOptions"
+    optionValue="value"
+    [ngModel]="master()"
+    (onChange)="open($event.value)"
+    [attr.aria-label]="'masters.selector' | translate"
+  >
+    <ng-template #selectedItem let-option>{{
+      'breadcrumb.' + option.value | translate
+    }}</ng-template>
+    <ng-template #item let-option>{{ 'breadcrumb.' + option.value | translate }}</ng-template>
+  </p-select>
+
+  @switch (state().status) {
+    @case ('loading') {
+      <p class="masters__status" role="status">{{ 'masters.loading' | translate }}</p>
+    }
+    @case ('error') {
+      <p class="masters__status masters__status--error" role="alert">
+        {{ 'masters.error' | translate }}
+      </p>
+    }
+    @case ('ready') {
+      <app-master-table [columns]="columns()" [rows]="rows()" />
+    }
+  }
+</div>
