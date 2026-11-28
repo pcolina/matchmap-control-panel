@@ -1,0 +1,114 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  padding: var(--mm-space-8) var(--mm-space-4);
+}
+
+.login {
+  flex-direction: column;
+  align-items: center;
+  gap: var(--mm-space-6);
+}
+
+.login__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--mm-space-3);
+}
+
+.login__logo {
+  display: block;
+  width: 64px;
+  height: 64px;
+}
+
+.login__brand-text {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.login__name {
+  font-family: var(--mm-font-display);
+  font-weight: 800;
+  font-size: 2rem;
+  line-height: 1.1;
+  color: var(--mm-color-text);
+  white-space: nowrap;
+}
+
+.login__product {
+  font-size: var(--mm-type-caption-size);
+  line-height: var(--mm-type-caption-line-height);
+  color: var(--mm-color-textSecondary);
+  letter-spacing: var(--mm-type-caption-letter-spacing);
+  white-space: nowrap;
+}
+
+.login__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mm-space-4);
+  width: 100%;
+  max-width: 360px;
+  padding: var(--mm-space-6);
+  background: var(--mm-color-surfaceRaised);
+  border: 1px solid var(--mm-color-border);
+  border-radius: var(--mm-radius-lg);
+  box-shadow: var(--mm-elevation-card);
+  color: var(--mm-color-text);
+}
+
+.login__title {
+  margin: 0;
+  font-family: var(--mm-font-display);
+  font-size: 1.5rem;
+}
+
+.login__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mm-space-1);
+  font-size: 0.875rem;
+  color: var(--mm-color-textSecondary);
+}
+
+.login__input {
+  min-height: var(--mm-size-input-height);
+  padding: 0 var(--mm-space-3);
+  background: var(--mm-color-surface);
+  color: var(--mm-color-text);
+  border: 1px solid var(--mm-color-borderInput);
+  border-radius: var(--mm-radius-md);
+  font: inherit;
+}
+
+.login__input:focus-visible {
+  outline: var(--mm-border-width-focus) solid var(--mm-color-accent);
+  outline-offset: 2px;
+}
+
+.login__error {
+  margin: 0;
+  color: var(--mm-color-danger);
+}
+
+.login__submit {
+  min-height: var(--mm-size-button-height);
+  background: var(--mm-color-accent);
+  color: var(--mm-color-onAccent);
+  border: 0;
+  border-radius: var(--mm-radius-pill);
+  font: inherit;
+  cursor: pointer;
+}
+
+.login__submit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}

@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.masters {
+  display: flex;
+  flex-direction: column;
+  gap: var(--mm-space-4);
+  min-width: 0;
+}
+
+.masters__selector {
+  width: 240px;
+  max-width: 100%;
+  margin-top: var(--mm-space-5);
+}
+
+.masters__status {
+  margin: 0;
+  color: var(--mm-color-textSecondary);
+}
+
+.masters__status--error {
+  color: var(--mm-color-danger);
+}

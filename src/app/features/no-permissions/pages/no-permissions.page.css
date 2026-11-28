@@ -1,0 +1,14 @@
+:host {
+  display: block;
+  min-width: 0;
+}
+
+.no-permissions {
+  padding: var(--mm-space-8) var(--mm-space-4);
+  text-align: center;
+  color: var(--mm-color-text);
+}
+
+.no-permissions__text {
+  margin: 0;
+}
