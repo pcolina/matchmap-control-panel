@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Apollo } from 'apollo-angular';
 import { TranslatePipe } from '@ngx-translate/core';
 import { SelectModule } from 'primeng/select';
+import { NotificationStore } from '../../../core/notifications/notification.store';
 import { catchError, map, of, switchMap } from 'rxjs';
 import { CountriesData } from '../data/countries.query';
 import { ProhibitedWordsData } from '../data/prohibited-words.query';
@@ -34,6 +35,12 @@ export class MastersPage {
   private readonly apollo = inject(Apollo);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly notifications = inject(NotificationStore);
+
+  private failed(): MasterLoad {
+    this.notifications.show('error', 'masters.error');
+    return { status: 'error' };
+  }
 
   readonly masterOptions = MASTER_SLUGS.map((slug) => ({ value: slug }));
 
@@ -54,17 +61,17 @@ export class MastersPage {
           .valueChanges.pipe(
             map((result): MasterLoad => {
               if (result.error) {
-                return { status: 'error' };
+                return this.failed();
               }
               const source = sourceFor(master, result.data as MasterData | undefined);
               if (source) {
                 return { status: 'ready', master, source };
               }
-              return result.loading ? { status: 'loading' } : { status: 'error' };
+              return result.loading ? { status: 'loading' } : this.failed();
             }),
           ),
       ),
-      catchError(() => of<MasterLoad>({ status: 'error' })),
+      catchError(() => of<MasterLoad>(this.failed())),
     ),
     { initialValue: { status: 'loading' } },
   );

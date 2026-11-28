@@ -1,0 +1,41 @@
+.toast {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column-reverse;
+  pointer-events: none;
+}
+
+.toast__bar {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  padding: 0 var(--mm-space-3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 1rem;
+  pointer-events: auto;
+  cursor: default;
+}
+
+.toast__bar--error {
+  background: var(--mm-color-danger);
+  color: var(--mm-color-onDanger);
+}
+
+.toast__bar--info {
+  background: var(--mm-color-accent);
+  color: var(--mm-color-onAccent);
+}
+
+.toast__bar--warning {
+  background: var(--mm-color-warning);
+  color: var(--mm-color-onAccent);
+}

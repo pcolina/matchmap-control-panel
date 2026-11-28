@@ -1,0 +1,16 @@
+@if (items().length > 0) {
+  <div class="toast">
+    @for (item of items(); track item.id) {
+      <div
+        class="toast__bar"
+        [class.toast__bar--error]="item.kind === 'error'"
+        [class.toast__bar--info]="item.kind === 'info'"
+        [class.toast__bar--warning]="item.kind === 'warning'"
+        [attr.role]="item.kind === 'error' ? 'alert' : 'status'"
+        (click)="close(item)"
+      >
+        {{ item.message | translate }}
+      </div>
+    }
+  </div>
+}

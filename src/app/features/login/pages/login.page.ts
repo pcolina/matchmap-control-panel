@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/cor
 import { ActivatedRoute, Router } from '@angular/router';
 import { TranslatePipe } from '@ngx-translate/core';
 import { AuthStore } from '../../../core/auth/auth.store';
+import { NotificationStore } from '../../../core/notifications/notification.store';
 
 @Component({
   selector: 'app-login-page',
@@ -14,10 +15,10 @@ export class LoginPage {
   private readonly store = inject(AuthStore);
   private readonly router = inject(Router);
   private readonly route = inject(ActivatedRoute);
+  private readonly notifications = inject(NotificationStore);
 
   readonly email = signal('');
   readonly password = signal('');
-  readonly error = signal(false);
   readonly submitting = signal(false);
 
   onSubmit(event: Event): void {
@@ -26,13 +27,12 @@ export class LoginPage {
   }
 
   async submit(): Promise<void> {
-    this.error.set(false);
     this.submitting.set(true);
     try {
       await this.store.login(this.email().trim(), this.password());
       await this.router.navigateByUrl(this.route.snapshot.queryParamMap.get('returnUrl') ?? '/home');
     } catch {
-      this.error.set(true);
+      this.notifications.show('error', 'login.error');
     } finally {
       this.submitting.set(false);
     }
