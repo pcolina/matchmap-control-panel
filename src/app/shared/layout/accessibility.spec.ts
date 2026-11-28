@@ -51,7 +51,7 @@ describe('control panel shell accessibility', () => {
   });
 
   it('has no WCAG AA violations when collapsed to the rail', async () => {
-    fixture.nativeElement.querySelector('.sidebar__toggle').click();
+    fixture.nativeElement.querySelector('.sidebar__brand-toggle').click();
     fixture.detectChanges();
     await fixture.whenStable();
     expect(await runAxe(fixture.nativeElement)).toEqual([]);

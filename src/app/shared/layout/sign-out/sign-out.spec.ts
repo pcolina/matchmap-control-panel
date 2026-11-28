@@ -44,6 +44,15 @@ describe('SignOut', () => {
     expect(router.navigateByUrl).toHaveBeenCalledWith('/login');
   });
 
+  it('shows only the logout icon with an accessible name when collapsed', () => {
+    fixture.componentRef.setInput('collapsed', true);
+    fixture.detectChanges();
+    const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
+    expect(button.textContent?.trim()).toBe('');
+    expect(button.getAttribute('aria-label')).toBe('Sign out');
+    expect(button.querySelector('ng-icon')).not.toBeNull();
+  });
+
   it('labels the button with the sign-out text', () => {
     const button = fixture.nativeElement.querySelector('button') as HTMLButtonElement;
     expect(button.textContent?.trim()).toBe('Sign out');

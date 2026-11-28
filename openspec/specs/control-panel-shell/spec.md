@@ -1,9 +1,13 @@
 # control-panel-shell
 
+## Purpose
+
+The shell of the control panel: the sidebar with its brand, its collapse control and its sign-out control, the breadcrumb trail and the content area.
+
 ## Requirements
 
 ### Requirement: Sidebar brand and footer
-The sidebar SHALL show the MatchMap logo and the text «MatchMap» at the top, and the text «Control Panel» directly below it in a smaller size. The footer SHALL show the application version («Versión 1.0.0» in Spanish, «Version 1.0.0» in English) in the accent colour, inside a chip with the surface colour so that its contrast passes WCAG 2.2 AA. When the sidebar is expanded, the chip SHALL be centred horizontally in the footer. The logo SHALL NOT be a link.
+The sidebar SHALL show the MatchMap logo and the text «MatchMap» at the top, and the text «Control Panel» directly below it in a smaller size. The footer SHALL show the application version («Versión 1.0.0» in Spanish, «Version 1.0.0» in English) as plain text in the accent colour, without a background, border or padding. Its contrast SHALL pass WCAG 2.2 AA on the sidebar background. When the sidebar is expanded, the version SHALL be centred horizontally in the footer. The logo SHALL NOT be a link.
 
 #### Scenario: Expanded sidebar shows the brand
 - **WHEN** the sidebar is expanded
@@ -39,7 +43,7 @@ The navigation SHALL list these items in this order: Home, Maestros, Estadístic
 - **THEN** each navigation route is a separate lazy-loaded chunk
 
 ### Requirement: Collapse to rail
-The sidebar SHALL collapse to a 50 px wide rail that shows only the icons, and expand back to its full width. The rail SHALL show the same items, in the same order, and each link SHALL keep an accessible name.
+The sidebar SHALL collapse to a 50 px wide rail that shows only the icons, and expand back to its full width. The brand at the top of the sidebar SHALL be the control that changes this state. The rail SHALL show the same items, in the same order, and each link SHALL keep an accessible name.
 
 #### Scenario: Collapsing keeps the navigation
 - **WHEN** the user collapses the sidebar
@@ -49,8 +53,9 @@ The sidebar SHALL collapse to a 50 px wide rail that shows only the icons, and e
 
 #### Scenario: Toggle has a name and state
 - **WHEN** the sidebar is shown at width 768 px or more
-- **THEN** a toggle button is available with an accessible name
-- **AND** the toggle has `aria-expanded` set to `true` when expanded and `false` when collapsed
+- **THEN** the brand is a button with an accessible name
+- **AND** the button has `aria-expanded` set to `true` when expanded and `false` when collapsed
+- **AND** there is no other expand or collapse button in the sidebar
 
 #### Scenario: Labels are visible on focus in the rail
 - **WHEN** an item in the collapsed rail receives keyboard focus
@@ -58,9 +63,13 @@ The sidebar SHALL collapse to a 50 px wide rail that shows only the icons, and e
 
 #### Scenario: Toggle arrows show the direction of the change
 - **WHEN** the sidebar is collapsed
-- **THEN** the toggle shows arrows pointing outward, to expand
+- **THEN** the brand button's accessible name says it expands the sidebar
 - **WHEN** the sidebar is expanded
-- **THEN** the toggle shows arrows pointing inward, to collapse
+- **THEN** the brand button's accessible name says it collapses the sidebar
+
+#### Scenario: Brand in the narrow drawer
+- **WHEN** the sidebar is shown in the narrow drawer
+- **THEN** the brand is not a button and does not change the width
 
 ### Requirement: Collapsed state is remembered per user
 The expanded or collapsed state SHALL be stored per signed-in user, so the same state is restored on the next visit in the same browser. The state SHALL be read through a single storage port so that it can move to the user account preferences when the accounts change exists.
@@ -197,3 +206,18 @@ Every page of the main layout SHALL show a breadcrumb trail above its title. The
 - **WHEN** the trail is rendered
 - **THEN** the chevron separators have `aria-hidden="true"`
 - **AND** the trail is a `nav` landmark with an accessible name in the current language
+
+### Requirement: Sign-out lives in the sidebar
+The sign-out control SHALL be shown in the sidebar, after the navigation links, separated from them by a grey horizontal line and a large gap. It SHALL show a logout icon with the same size as the navigation icons. When the sidebar is collapsed, the control SHALL show only the icon with an accessible name.
+
+#### Scenario: Sign-out below the links
+- **WHEN** the sidebar is shown
+- **THEN** the sign-out control comes after the last navigation link, with a divider between them
+
+#### Scenario: Icon matches navigation icons
+- **WHEN** the sign-out control is shown
+- **THEN** its icon has the same font size as the navigation icons
+
+#### Scenario: Collapsed rail
+- **WHEN** the sidebar is collapsed
+- **THEN** the sign-out control shows only the icon, and keeps the accessible name «Sign out»

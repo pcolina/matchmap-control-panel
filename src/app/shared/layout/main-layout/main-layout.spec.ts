@@ -100,9 +100,11 @@ describe('MainLayout', () => {
     menuButton().click();
     fixture.detectChanges();
     await fixture.whenStable();
-    const links = Array.from(drawer()?.querySelectorAll<HTMLElement>('a.sidebar__link') ?? []);
-    const first = links[0];
-    const last = links[links.length - 1];
+    const focusables = Array.from(
+      drawer()?.querySelectorAll<HTMLElement>('a[href], button:not([disabled])') ?? [],
+    );
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
     last.focus();
     drawer()?.dispatchEvent(new KeyboardEvent('keydown', { key: 'Tab', bubbles: true }));
     expect(document.activeElement).toBe(first);
